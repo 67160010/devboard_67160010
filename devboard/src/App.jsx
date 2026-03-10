@@ -2,6 +2,7 @@
 import Navbar from "./components/Navbar";
 import PostCard from "./components/PostCard";
 import PostList from "./components/PostList";
+import UserCard from "./components/UserCard";
 
 const POSTS = [
   {
@@ -39,6 +40,9 @@ function App() {
       <Navbar />
       <PostCard title="ทดสอบ" body="นี่คือเนื้อหาทดสอบ" />
       <PostList posts={POSTS} />
+       {USERS.map((user) => (
+        <UserCard key={user.id} name={user.name} email={user.email} />
+      ))}
     </div>
   );
 }
