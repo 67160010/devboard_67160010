@@ -9,7 +9,6 @@ function PostList({ favorites, onToggleFavorite }) {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("")
 
-   useEffect(() => {
     async function fetchPosts() {
       try {
         setLoading(true);
@@ -24,7 +23,8 @@ function PostList({ favorites, onToggleFavorite }) {
         setLoading(false);
       }
     }
-    fetchPosts();
+    useEffect(() => {
+        fetchPosts();
   }, []); // [] = ทำครั้งเดียวตอน component mount
 
   const filtered = posts.filter((post) =>
@@ -50,6 +50,14 @@ function PostList({ favorites, onToggleFavorite }) {
 
   return (
     <div>
+     <div
+        style={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center" 
+        }}
+      >
+  
       <h2
         style={{
           color: "#2d3748",
@@ -59,6 +67,23 @@ function PostList({ favorites, onToggleFavorite }) {
       >
         โพสต์ล่าสุด
       </h2>
+
+       <button
+    onClick={fetchPosts}
+    style={{
+      padding: "0.3rem 0.7rem",
+      background: "#edf2f7",
+      border: "1px solid #cbd5e0",
+      borderRadius: "6px",
+      cursor: "pointer",
+      fontSize: "0.85rem",
+    }}
+  >
+    🔄 โหลดใหม่
+  </button>
+
+ </div>
+
 
       {/* Search Input */}
       <input
